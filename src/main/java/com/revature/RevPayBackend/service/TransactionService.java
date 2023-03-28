@@ -6,13 +6,12 @@ import com.revature.RevPayBackend.entity.Transaction;
 
 
 public interface TransactionService {
-//    AppUser insert(AppUser appUser);
-//    AppUser getById(Long id);
-//    List<AppUser> getAll();
-//    AppUser update(AppUser AppUser);
-//    boolean delete(Long id);
-//    //List<AppUser> getAll(String flag);
-//    List<AppUser> findByUsername(String username);
+    Transaction insert(Transaction transaction);
+    Transaction getById(Long id);
+    List<Transaction> getAll();
+    Transaction update(Transaction transaction);
+    boolean delete(Long id);
 
-    //AppUser loginWithBody(LoginBody loginBody);
+
+
 }

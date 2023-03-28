@@ -24,4 +24,6 @@ public class Transaction {
         this.accountId = accountId;
         this.accountEmail = accountEmail;
     }
+
+
 }

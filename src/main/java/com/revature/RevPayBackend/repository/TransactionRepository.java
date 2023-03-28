@@ -9,8 +9,7 @@ import java.util.List;
 @Repository
 
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
-    //List<AppUser> findByUsername(String username);
-    //AppUser login(AppUser appUser);
+
 
 
 }
