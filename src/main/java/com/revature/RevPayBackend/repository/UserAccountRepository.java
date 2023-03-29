@@ -16,4 +16,6 @@ public interface UserAccountRepository extends JpaRepository<UserAccount, Long> 
     UserAccount findByUsername(String username);
     List<UserAccount> findByIsBusinessAccountTrue();
     List<UserAccount> findByIsBusinessAccountFalse();
+
+    boolean existsByUsername(String username);
 }

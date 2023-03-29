@@ -1,6 +1,7 @@
 package com.revature.RevPayBackend.entity;
 
 import com.revature.RevPayBackend.dto.UserAccountReturnInfo;
+import com.revature.RevPayBackend.dto.UserAccountUpdateContent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,8 +37,19 @@ public class UserAccount extends UserAccountReturnInfo {
         this.isBusinessAccount = isBusinessAccount;
     }
 
+    public UserAccount(Long userAccountId, UserAccountUpdateContent userAccountUpdateContent){
+        this.accountId = userAccountId;
+        this.username = userAccountUpdateContent.getUsername();
+        this.password = userAccountUpdateContent.getPassword();
+        this.email = userAccountUpdateContent.getEmail();
+        this.phoneNumber = userAccountUpdateContent.getPhoneNumber();
+        this.name = userAccountUpdateContent.getName();
+        this.address = userAccountUpdateContent.getAddress();
+        this.isBusinessAccount = userAccountUpdateContent.isBusinessAccount();
+    }
 
-    public static void hashPass(UserAccount userAccount){
+
+    public static void hashPassUA(UserAccount userAccount){
         try{
             MessageDigest messageDigest = MessageDigest.getInstance("SHA");
             messageDigest.update(userAccount.getPassword().getBytes());
