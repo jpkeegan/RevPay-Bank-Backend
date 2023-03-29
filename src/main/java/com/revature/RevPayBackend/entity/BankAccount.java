@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "BankAccount")
+@Table(name = "bank_account")
 
 
 public class BankAccount {
@@ -31,5 +31,4 @@ public class BankAccount {
 
     @Column (name = "balance")
     private double balance;
-
 }
