@@ -1,6 +1,7 @@
 package com.revature.RevPayBackend.service;
 
 import com.revature.RevPayBackend.entity.Wallet;
+import com.revature.RevPayBackend.exceptions.UserExceptions.IdNotFoundException;
 import com.revature.RevPayBackend.repository.WalletRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,17 +15,24 @@ public class WalletServiceImpl implements WalletService{
     private WalletRepository walletRepository;
 
     @Override
-    public Wallet findByAccountId(Long accountId) {
-        return walletRepository.findByAccountId(accountId);
+    public Wallet findByAccountId(Long accountId) throws IdNotFoundException {
+        Wallet wallet = walletRepository.findByAccountId(accountId);
+        if (wallet == null) {
+            throw new IdNotFoundException();
+        }
+        return wallet;
     }
 
     @Override
-    public Optional<Wallet> findByWalletId(Long walletId) {
+    public Optional<Wallet> findByWalletId(Long walletId) throws IdNotFoundException {
         Optional<Wallet> walletOptional = walletRepository.findById(walletId);
+        if (walletOptional.isEmpty()) {
+            throw new IdNotFoundException();
+        }
         return walletOptional;
     }
 
-    @Override
+        @Override
     public Wallet addWallet(Wallet wallet) {
         return walletRepository.save(wallet);
     }
@@ -35,13 +43,13 @@ public class WalletServiceImpl implements WalletService{
     }
 
     @Override
-    public boolean deleteWallet(Long walletId) {
+    public boolean deleteWallet(Long walletId) throws IdNotFoundException {
         Optional<Wallet> walletOptional = walletRepository.findById(walletId);
         if (walletOptional.isPresent()) {
             walletRepository.delete(walletOptional.get());
             return true;
         }
-        return false;
+        throw new IdNotFoundException();
     }
 
 }

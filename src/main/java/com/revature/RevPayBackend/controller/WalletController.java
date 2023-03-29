@@ -1,6 +1,7 @@
 package com.revature.RevPayBackend.controller;
 
 import com.revature.RevPayBackend.entity.Wallet;
+import com.revature.RevPayBackend.exceptions.UserExceptions.IdNotFoundException;
 import com.revature.RevPayBackend.service.WalletService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +20,7 @@ public class WalletController {
     private Logger logger = LoggerFactory.getLogger(WalletController.class);
 
     @GetMapping("/wallet/{accountId}")
-    public ResponseEntity<Wallet> getWalletByAccountId(@PathVariable("accountId") Long accountId) {
+    public ResponseEntity<Wallet> getWalletByAccountId(@PathVariable("accountId") Long accountId) throws IdNotFoundException {
         Wallet wallet = walletService.findByAccountId(accountId);
         logger.info("Getting wallet from account: " + accountId);
         return ResponseEntity.ok(wallet);
@@ -33,7 +34,7 @@ public class WalletController {
     }
 
     @PutMapping("/wallet/{walletId}")
-    public ResponseEntity<Wallet> updateWallet(@PathVariable("walletId") Long walletId, @RequestBody Wallet wallet) {
+    public ResponseEntity<Wallet> updateWallet(@PathVariable("walletId") Long walletId, @RequestBody Wallet wallet) throws IdNotFoundException {
         wallet.setWalletId(walletId);
         Wallet updatedWallet = walletService.updateWallet(wallet);
         logger.info("Updating wallet " + wallet + " to " + updatedWallet);
@@ -41,7 +42,7 @@ public class WalletController {
     }
 
     @DeleteMapping("/wallets/{walletId}")
-    public boolean deleteWallet(@PathVariable("walletId") Long walletId) {
+    public boolean deleteWallet(@PathVariable("walletId") Long walletId) throws IdNotFoundException{
         logger.info("Deleting Wallet with Id: " + walletId);
         return walletService.deleteWallet(walletId);
     }
