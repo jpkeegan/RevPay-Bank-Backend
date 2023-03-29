@@ -1,6 +1,7 @@
 package com.revature.RevPayBackend.service;
 
 import com.revature.RevPayBackend.entity.Wallet;
+import com.revature.RevPayBackend.exceptions.UserExceptions.IdNotFoundException;
 import com.revature.RevPayBackend.repository.WalletRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -24,7 +25,7 @@ public class WalletServiceTest {
     private WalletServiceImpl walletService;
 
     @Test
-    public void whenFindByAccountId_thenReturnWallet() {
+    public void whenFindByAccountId_thenReturnWallet() throws IdNotFoundException{
         // given
         double balance = 100.0;
         long accountId = 1L;
@@ -42,7 +43,7 @@ public class WalletServiceTest {
     }
 
     @Test
-    public void whenFindByWalletId_thenReturnWallet() {
+    public void whenFindByWalletId_thenReturnWallet() throws IdNotFoundException{
         // given
         double balance = 200.0;
         long walletId = 2L;
@@ -100,7 +101,7 @@ public class WalletServiceTest {
     }
 
     @Test
-    public void whenDeleteWallet_thenVerify() {
+    public void whenDeleteWallet_thenVerify()  throws IdNotFoundException {
         // given
         long walletId = 5L;
 
@@ -114,7 +115,7 @@ public class WalletServiceTest {
     }
 
     @Test
-    public void whenDeleteNonExistingWallet_thenVerify() {
+    public void whenDeleteNonExistingWallet_thenVerify() throws IdNotFoundException{
         // given
         long walletId = 6L;
 
