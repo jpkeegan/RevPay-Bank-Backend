@@ -5,12 +5,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY)
-public class UserNotFoundException extends Exception {
+@ResponseStatus(code = HttpStatus.NOT_FOUND)
+public class IdNotFoundException extends Exception {
     Logger logger1 = LoggerFactory.getLogger(UserNotFoundException.class);
 
-    public UserNotFoundException() {
-        super("Incorrect Log-In");
-        logger1.error("Incorrect Log-In");
+    public IdNotFoundException() {
+        super("Id Not Found");
+        logger1.error("Id Not Found");
     }
 }
