@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 @Data
 @NoArgsConstructor
@@ -32,5 +34,22 @@ public class UserAccount extends UserAccountReturnInfo {
         this.name = name;
         this.address = address;
         this.isBusinessAccount = isBusinessAccount;
+    }
+
+
+    public static void hashPass(UserAccount userAccount){
+        try{
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA");
+            messageDigest.update(userAccount.getPassword().getBytes());
+            byte[] result = messageDigest.digest();
+            StringBuilder sb = new StringBuilder();
+            for (byte b: result){
+                sb.append(String.format("%02x",b));
+            }
+            userAccount.setPassword(sb.toString());
+        }catch (NoSuchAlgorithmException e){
+            e.printStackTrace();
+        }
+
     }
 }

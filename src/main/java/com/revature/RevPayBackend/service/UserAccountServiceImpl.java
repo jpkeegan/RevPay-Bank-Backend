@@ -1,6 +1,8 @@
 package com.revature.RevPayBackend.service;
 
+import com.revature.RevPayBackend.dto.LoginForm;
 import com.revature.RevPayBackend.entity.UserAccount;
+import com.revature.RevPayBackend.exceptions.UserExceptions.UserNotFoundException;
 import com.revature.RevPayBackend.repository.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.Logger;
@@ -57,5 +59,13 @@ public class UserAccountServiceImpl implements UserAccountService {
     @Override
     public List<UserAccount> getAll() {
         return userAccountRepository.findAll();
+    }
+
+    @Override
+    public UserAccount verify(LoginForm loginForm) throws UserNotFoundException {
+        UserAccount returnedUser = userAccountRepository.verifyLogin(loginForm.getUsername(),loginForm.getPassword());
+        if(returnedUser == null) throw new UserNotFoundException();
+        logger1.info("Login Successful");
+        return returnedUser;
     }
 }
