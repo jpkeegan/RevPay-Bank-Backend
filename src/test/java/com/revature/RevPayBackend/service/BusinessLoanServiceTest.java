@@ -1,6 +1,7 @@
 package com.revature.RevPayBackend.service;
 
 import com.revature.RevPayBackend.entity.BusinessLoan;
+import com.revature.RevPayBackend.exceptions.UserExceptions.IdNotFoundException;
 import com.revature.RevPayBackend.repository.BusinessLoanRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -33,11 +34,12 @@ public class BusinessLoanServiceTest {
     }
 
     @Test
-    public void testGetById() {
+    public void testGetById() throws IdNotFoundException {
         Long businessLoanId = 1l;
         BusinessLoan expectedBusinessLoan = new BusinessLoan(1l, 50000l, "test loan summary", -1l);
 
         Mockito.when(businessLoanRepository.findById(businessLoanId)).thenReturn(Optional.of(expectedBusinessLoan));
+        Mockito.when(businessLoanRepository.existsById(businessLoanId)).thenReturn(true);
 
         Assertions.assertEquals(expectedBusinessLoan, businessLoanService.getById(businessLoanId));
     }
@@ -56,17 +58,18 @@ public class BusinessLoanServiceTest {
     }
 
     @Test
-    public void testUpdate() {
+    public void testUpdate() throws IdNotFoundException {
         BusinessLoan businessLoan = new BusinessLoan(1l, 50000l, "test loan summary", -1l);
         BusinessLoan updatedBusinessLoan = new BusinessLoan(1l, 50000l, "test loan summary", -1l);
 
         Mockito.when(businessLoanRepository.save(businessLoan)).thenReturn(updatedBusinessLoan);
+        Mockito.when(businessLoanRepository.existsById(businessLoan.getLoanId())).thenReturn(true);
 
         Assertions.assertEquals(updatedBusinessLoan, businessLoanService.update(businessLoan));
     }
 
     @Test
-    public void testDelete() {
+    public void testDelete() throws IdNotFoundException {
         Long businessLoadId = 1l;
 
         Mockito.when(businessLoanRepository.existsById(businessLoadId)).thenReturn(true);
