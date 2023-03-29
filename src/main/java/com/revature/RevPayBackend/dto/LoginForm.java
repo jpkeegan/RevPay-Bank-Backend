@@ -13,6 +13,7 @@ public class LoginForm {
     private String password;
 
 
+
     public static void hashPass(LoginForm loginForm){
         try{
             MessageDigest messageDigest = MessageDigest.getInstance("SHA");

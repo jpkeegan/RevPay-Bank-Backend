@@ -2,7 +2,9 @@ package com.revature.RevPayBackend.service;
 
 import com.revature.RevPayBackend.dto.LoginForm;
 import com.revature.RevPayBackend.entity.UserAccount;
+import com.revature.RevPayBackend.exceptions.UserExceptions.IdNotFoundException;
 import com.revature.RevPayBackend.exceptions.UserExceptions.UserNotFoundException;
+import com.revature.RevPayBackend.exceptions.UserExceptions.UsernameNotFoundException;
 import com.revature.RevPayBackend.repository.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.Logger;
@@ -29,24 +31,29 @@ public class UserAccountServiceImpl implements UserAccountService {
     }
 
     @Override
-    public boolean delete(Long userId) {
+    public boolean delete(Long userId) throws IdNotFoundException {
         boolean found = userAccountRepository.existsById(userId);
-        if (found){
+        if (!found){
+            logger1.error("Deletion Failed. No account with id " + userId);
+            throw new IdNotFoundException();
+        } else {
             logger1.info("Deletion Successful");
             userAccountRepository.deleteById(userId);
             return found;
         }
-        logger1.error("Deletion Failed. No account with id" + userId);
-        return found;
     }
 
     @Override
-    public UserAccount getById(Long id) {
+    public UserAccount getById(Long id) throws IdNotFoundException {
+        boolean found = userAccountRepository.existsById(id);
+        if (!found) throw new IdNotFoundException();
         return userAccountRepository.findById(id).get();
     }
 
     @Override
-    public UserAccount getByUsername(String username) {
+    public UserAccount getByUsername(String username) throws UsernameNotFoundException {
+        boolean found = userAccountRepository.existsByUsername(username);
+        if(!found) throw  new UsernameNotFoundException();
         return userAccountRepository.findByUsername(username);
     }
 

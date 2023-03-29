@@ -1,7 +1,12 @@
 package com.revature.RevPayBackend.controller;
 
+import com.revature.RevPayBackend.dto.LoginForm;
 import com.revature.RevPayBackend.dto.UserAccountReturnInfo;
+import com.revature.RevPayBackend.dto.UserAccountUpdateContent;
 import com.revature.RevPayBackend.entity.UserAccount;
+import com.revature.RevPayBackend.exceptions.UserExceptions.IdNotFoundException;
+import com.revature.RevPayBackend.exceptions.UserExceptions.UserNotFoundException;
+import com.revature.RevPayBackend.exceptions.UserExceptions.UsernameNotFoundException;
 import com.revature.RevPayBackend.service.UserAccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.revature.RevPayBackend.entity.UserAccount.hashPass;
+import static com.revature.RevPayBackend.dto.LoginForm.hashPass;
+import static com.revature.RevPayBackend.entity.UserAccount.hashPassUA;
 
 
 @RestController
@@ -25,8 +31,8 @@ public class UserAccountController {
 
     @PostMapping()
     public UserAccountReturnInfo insert(@RequestBody UserAccount userAccount){
-        logger1.info("Inserting..." +userAccount.toString());
-        hashPass(userAccount);
+        logger1.info("Inserting..." +userAccount.getUsername());
+        hashPassUA(userAccount);
         UserAccount returnedUser = userAccountService.insert(userAccount);
         return new UserAccountReturnInfo(returnedUser);
     }
@@ -68,7 +74,7 @@ public class UserAccountController {
     }
 
     @GetMapping("/{userIdentifier}")
-    public UserAccountReturnInfo getByIdOrUsername(@PathVariable("userIdentifier") String identifier){
+    public UserAccountReturnInfo getByIdOrUsername(@PathVariable("userIdentifier") String identifier) throws IdNotFoundException, UsernameNotFoundException {
         try{
             Long id = Long.parseLong(identifier);
             logger1.info("Attempting to retrieve by user id = "+identifier );
@@ -82,17 +88,27 @@ public class UserAccountController {
         }
     }
 
-    @PutMapping()
-    public UserAccountReturnInfo update(@RequestBody UserAccount userAccount){
-        logger1.info("Updating user "+userAccount.toString() );
-        hashPass(userAccount);
-        UserAccount returnedUser = userAccountService.update(userAccount);
+    @PutMapping("/{userAccountId}")
+    public UserAccountReturnInfo update(@PathVariable("userAccountId") Long userAccountId, @RequestBody UserAccountUpdateContent userAccountUpdateContent) throws UserNotFoundException {
+        logger1.info("Must validate update authorization.");
+        LoginForm verifyLogin = new LoginForm(userAccountUpdateContent.getUsername(), userAccountUpdateContent.getPassword());
+        logger1.info("Verifying Login");
+        hashPass(verifyLogin);
+        UserAccount returnedUser = userAccountService.verify(verifyLogin);
+        if (returnedUser == null){
+            logger1.error("Not Authorized to update User Info");
+        } else {
+            logger1.info("Updating user ID: "+userAccountId.toString() );
+            UserAccount userAccount = new UserAccount(userAccountId, userAccountUpdateContent);
+            hashPassUA(userAccount);
+            returnedUser = userAccountService.update(userAccount);
+        }
         return new UserAccountReturnInfo(returnedUser);
     }
 
     @DeleteMapping("/{userAccountId}")
-    public boolean delete(@PathVariable("userAccountId") Long userId){
-        logger1.info("Attempting deletion of user by id = "+userId.toString() );
+    public boolean delete(@PathVariable("userAccountId") Long userId) throws IdNotFoundException{
+        logger1.info("Attempting deletion of user by ID: "+userId.toString() );
         return userAccountService.delete(userId);
     }
 
