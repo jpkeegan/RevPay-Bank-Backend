@@ -3,9 +3,11 @@ package com.revature.RevPayBackend.service;
 import com.revature.RevPayBackend.entity.Business;
 import com.revature.RevPayBackend.repository.BusinessRepsository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class BusinessServiceImp implements BusinessService{
 
     @Autowired
