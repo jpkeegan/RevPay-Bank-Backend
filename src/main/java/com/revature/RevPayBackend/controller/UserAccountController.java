@@ -11,21 +11,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.revature.RevPayBackend.entity.UserAccount.hashPass;
+
+
 @RestController
 @RequestMapping("/userAccount")
 @CrossOrigin(origins = "*")
 public class UserAccountController {
-
     @Autowired
     UserAccountService userAccountService;
-
-
 
     Logger logger1 = LoggerFactory.getLogger(UserAccountController.class);
 
     @PostMapping()
     public UserAccountReturnInfo insert(@RequestBody UserAccount userAccount){
         logger1.info("Inserting..." +userAccount.toString());
+        hashPass(userAccount);
         UserAccount returnedUser = userAccountService.insert(userAccount);
         return new UserAccountReturnInfo(returnedUser);
     }
@@ -84,6 +85,7 @@ public class UserAccountController {
     @PutMapping()
     public UserAccountReturnInfo update(@RequestBody UserAccount userAccount){
         logger1.info("Updating user "+userAccount.toString() );
+        hashPass(userAccount);
         UserAccount returnedUser = userAccountService.update(userAccount);
         return new UserAccountReturnInfo(returnedUser);
     }
