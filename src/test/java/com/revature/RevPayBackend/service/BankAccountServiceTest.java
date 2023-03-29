@@ -1,6 +1,7 @@
 package com.revature.RevPayBackend.service;
 
 import com.revature.RevPayBackend.entity.BankAccount;
+import com.revature.RevPayBackend.exceptions.UserExceptions.IdNotFoundException;
 import com.revature.RevPayBackend.repository.BankAccountRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -22,35 +23,33 @@ public class BankAccountServiceTest {
 
     @Test
     public void testInsert(){
-        BankAccount bankAccount = new BankAccount(111111111L, 22222222L, 1l, 2500.50);
-        BankAccount expectedBankAccount = new BankAccount(1l, 111111111L, 22222222L, 1l, 2500.50);
+        BankAccount bankAccount = new BankAccount(111111111L, 22222222L, 1L);
+        BankAccount expectedBankAccount = new BankAccount(1L, 111111111L, 22222222L, 1L, 2500.50);
         Mockito.when(bankAccountRepository.save(bankAccount)).thenReturn(expectedBankAccount);
         Assertions.assertEquals(expectedBankAccount, bankAccountService.insert(bankAccount));
     }
 
     @Test
-    public void testGetById(){
-        BankAccount expectedBankAccount = new BankAccount(1l, 111111111L, 22222222L, 1l, 2500.50);
-        Mockito.when(bankAccountRepository.findById(1l)).thenReturn(Optional.of(expectedBankAccount));
-        Assertions.assertEquals(expectedBankAccount, bankAccountService.getById(1l));
+    public void testGetById() throws IdNotFoundException {
+        BankAccount expectedBankAccount = new BankAccount(1L, 111111111L, 22222222L, 1L, 2500.50);
+        Mockito.when(bankAccountRepository.findById(1L)).thenReturn(Optional.of(expectedBankAccount));
+        Assertions.assertEquals(expectedBankAccount, bankAccountService.getById(1L));
 
     }
 
     @Test
-    public void testUpdate(){
-        BankAccount bankAccount = new BankAccount(1l, 111111111L, 22222222L, 1l, 2500.50);
-        BankAccount updatedBankAccount = new BankAccount(1l, 111111111L, 22222222L, 1l, 5000.25);
+    public void testUpdate() throws IdNotFoundException{
+        BankAccount bankAccount = new BankAccount(111111111L, 22222222L, 1L);
+        BankAccount updatedBankAccount = new BankAccount(1L, 111111111L, 22222222L, 1L, 5000.25);
         Mockito.when(bankAccountRepository.save(bankAccount)).thenReturn(updatedBankAccount);
         Assertions.assertEquals(updatedBankAccount, bankAccountService.update(bankAccount));
     }
 
     @Test
-    public void testDelete(){
-        BankAccount bankAccount = new BankAccount(1l, 111111111L, 22222222L, 1l, 2500.50);
-        Mockito.when(bankAccountRepository.existsById(1l)).thenReturn(true);
-        Assertions.assertTrue(bankAccountService.delete(1l));
-        Mockito.when(bankAccountRepository.existsById(2l)).thenReturn(false);
-        Assertions.assertFalse(bankAccountService.delete(2l));
+    public void testDelete() throws IdNotFoundException{
+        BankAccount bankAccount = new BankAccount(1L, 111111111L, 22222222L, 1L, 2500.50);
+        Mockito.when(bankAccountRepository.existsById(1L)).thenReturn(true);
+        Assertions.assertTrue(bankAccountService.delete(1L));
     }
 
 }

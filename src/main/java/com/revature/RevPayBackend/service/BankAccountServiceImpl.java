@@ -1,10 +1,13 @@
 package com.revature.RevPayBackend.service;
 
 import com.revature.RevPayBackend.entity.BankAccount;
+import com.revature.RevPayBackend.exceptions.UserExceptions.IdNotFoundException;
 import com.revature.RevPayBackend.repository.BankAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+
+import javax.persistence.Id;
 
 @Service
 @Primary
@@ -19,8 +22,8 @@ public class BankAccountServiceImpl implements BankAccountService {
     }
 
     @Override
-    public BankAccount getById(Long id) {
-        return bankAccountRepository.findById(id).get();
+    public BankAccount getById(Long bankAccountId) {
+        return bankAccountRepository.findById(bankAccountId).get();
     }
 
     @Override
@@ -29,9 +32,9 @@ public class BankAccountServiceImpl implements BankAccountService {
     }
 
     @Override
-    public boolean delete(Long id) {
-        boolean isFound = bankAccountRepository.existsById(id);
-        if(isFound) bankAccountRepository.deleteById(id);
-        return isFound;
+    public boolean delete(Long bankAccountId)  {
+        boolean found = bankAccountRepository.existsById(bankAccountId);
+        if(found) bankAccountRepository.deleteById(bankAccountId);
+        return found;
     }
 }
