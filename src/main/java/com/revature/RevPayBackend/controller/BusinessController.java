@@ -1,6 +1,7 @@
 package com.revature.RevPayBackend.controller;
 
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.revature.RevPayBackend.entity.Business;
 import com.revature.RevPayBackend.service.BusinessService;
 import org.springframework.http.HttpStatus;
@@ -11,10 +12,13 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/businesses")
 public class BusinessController {
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     BusinessService businessService;
 
     @PostMapping()
     public ResponseEntity<Business> insert(@RequestBody Business business){
+        logger.info("Object made: " + business.toString());
         return new ResponseEntity<>(businessService.insert(business), HttpStatus.CREATED);
     }
 
@@ -30,6 +34,7 @@ public class BusinessController {
     @PutMapping()
     public ResponseEntity<Business> update(@RequestBody Business business){
         try{
+            logger.info("Object updated: " + business.toString());
             return new ResponseEntity<>(businessService.update(business),HttpStatus.OK);
         }catch(Exception e){
             return new ResponseEntity<>(new Business(),HttpStatus.NOT_FOUND);
