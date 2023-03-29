@@ -1,6 +1,7 @@
 package com.revature.RevPayBackend.controller;
 
 import com.revature.RevPayBackend.entity.BusinessLoan;
+import com.revature.RevPayBackend.exceptions.UserExceptions.IdNotFoundException;
 import com.revature.RevPayBackend.service.BusinessLoanService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,19 +35,19 @@ public class BusinessLoanController {
     }
 
     @GetMapping("/{businessLoanId}")
-    public BusinessLoan getById(@PathVariable("businessLoanId") Long id) {
+    public BusinessLoan getById(@PathVariable("businessLoanId") Long id) throws IdNotFoundException {
         logger.info("Getting business loan of ID: " + id);
         return businessLoanService.getById(id);
     }
 
     @PutMapping()
-    public BusinessLoan update(@RequestBody BusinessLoan businessLoan) {
+    public BusinessLoan update(@RequestBody BusinessLoan businessLoan) throws IdNotFoundException {
         logger.info("Updating: " + businessLoan.toString());
         return businessLoanService.update(businessLoan);
     }
 
     @DeleteMapping("/{id}")
-    public boolean delete(@PathVariable("id") Long id) {
+    public boolean delete(@PathVariable("id") Long id) throws IdNotFoundException {
         logger.info("Deleting business loan of ID: " + id);
         return businessLoanService.delete(id);
     }
