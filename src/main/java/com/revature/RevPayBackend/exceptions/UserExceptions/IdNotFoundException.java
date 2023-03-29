@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(code = HttpStatus.NOT_FOUND)
 public class IdNotFoundException extends Exception {
-    Logger logger1 = LoggerFactory.getLogger(UserNotFoundException.class);
+    Logger logger1 = LoggerFactory.getLogger(IdNotFoundException.class);
 
     public IdNotFoundException() {
         super("Id Not Found");
