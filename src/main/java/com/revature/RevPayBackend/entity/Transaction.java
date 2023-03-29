@@ -18,11 +18,12 @@ public class Transaction {
     private long dateTime;
 
 
-    public Transaction(double amount, boolean send, long accountId, String accountEmail) {
+    public Transaction(double amount, boolean send, long accountId, String accountEmail, long dateTime) {
         this.amount = amount;
         this.send = send;
         this.accountId = accountId;
         this.accountEmail = accountEmail;
+        this.dateTime = dateTime;
     }
 
 
