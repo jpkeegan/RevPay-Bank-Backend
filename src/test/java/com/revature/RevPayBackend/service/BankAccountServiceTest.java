@@ -23,7 +23,7 @@ public class BankAccountServiceTest {
 
     @Test
     public void testInsert(){
-        BankAccount bankAccount = new BankAccount(111111111L, 22222222L, 1L);
+        BankAccount bankAccount = new BankAccount(111111111L, 22222222L);
         BankAccount expectedBankAccount = new BankAccount(1L, 111111111L, 22222222L, 1L, 2500.50);
         Mockito.when(bankAccountRepository.save(bankAccount)).thenReturn(expectedBankAccount);
         Assertions.assertEquals(expectedBankAccount, bankAccountService.insert(bankAccount));
@@ -39,7 +39,7 @@ public class BankAccountServiceTest {
 
     @Test
     public void testUpdate() throws IdNotFoundException{
-        BankAccount bankAccount = new BankAccount(111111111L, 22222222L, 1L);
+        BankAccount bankAccount = new BankAccount(111111111L, 22222222L);
         BankAccount updatedBankAccount = new BankAccount(1L, 111111111L, 22222222L, 1L, 5000.25);
         Mockito.when(bankAccountRepository.save(bankAccount)).thenReturn(updatedBankAccount);
         Assertions.assertEquals(updatedBankAccount, bankAccountService.update(bankAccount));
