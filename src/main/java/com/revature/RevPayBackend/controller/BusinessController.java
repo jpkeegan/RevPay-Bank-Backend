@@ -1,9 +1,11 @@
 package com.revature.RevPayBackend.controller;
 
+import com.revature.RevPayBackend.dto.BusinessAccountReturn;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.revature.RevPayBackend.entity.Business;
 import com.revature.RevPayBackend.service.BusinessService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +16,12 @@ import org.springframework.web.bind.annotation.*;
 public class BusinessController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    @Autowired
     BusinessService businessService;
 
     @PostMapping()
-    public ResponseEntity<Business> insert(@RequestBody Business business){
+    public ResponseEntity<Business> insert(@RequestBody BusinessAccountReturn rbusiness){
+        Business business = new Business(rbusiness.getBusinessId(), rbusiness.getBin(), rbusiness.getEin(), rbusiness.isForProfit(), rbusiness.getAccountid());
         logger.info("Object made: " + business.toString());
         return new ResponseEntity<>(businessService.insert(business), HttpStatus.CREATED);
     }
