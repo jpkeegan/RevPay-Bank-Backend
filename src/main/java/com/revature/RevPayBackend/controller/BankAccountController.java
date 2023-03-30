@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/bankAccounts")
@@ -32,6 +34,18 @@ public class BankAccountController {
             logger1.info("Getting bank account by ID: {}", id);
             return new ResponseEntity<>(bankAccountService.getById(id), HttpStatus.OK);
     }
+
+    @GetMapping
+    public ResponseEntity <List<BankAccount>> getAll() {
+        List<BankAccount> bankAccounts;
+        bankAccounts = bankAccountService.getAll();
+        logger1.info("Getting all bank accounts: {}", bankAccounts.size());
+        for (BankAccount bankAccount: bankAccounts) {
+            logger1.info("BankAccounts: {}", bankAccount);
+        }
+        return new ResponseEntity<>(bankAccountService.getAll(), HttpStatus.OK);
+    }
+
 
     @PutMapping("/{id}")
     public ResponseEntity <BankAccount> update(@RequestBody BankAccount bankAccount) throws IdNotFoundException {

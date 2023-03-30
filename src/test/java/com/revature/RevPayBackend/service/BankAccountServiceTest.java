@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
@@ -35,6 +37,16 @@ public class BankAccountServiceTest {
         Mockito.when(bankAccountRepository.findById(1L)).thenReturn(Optional.of(expectedBankAccount));
         Assertions.assertEquals(expectedBankAccount, bankAccountService.getById(1L));
 
+    }
+
+    @Test
+    public void testGetAll() {
+        List<BankAccount> expectedBankAccounts = new ArrayList<>();
+        expectedBankAccounts.add(new BankAccount(111111111L,22222222L));
+        expectedBankAccounts.add(new BankAccount(111111112L,22222223L));
+        expectedBankAccounts.add(new BankAccount(111111113L,22222224L));
+        Mockito.when(bankAccountRepository.findAll()).thenReturn(expectedBankAccounts);
+        Assertions.assertEquals(expectedBankAccounts, bankAccountService.getAll());
     }
 
     @Test
