@@ -14,13 +14,13 @@ public class Business {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long businessId;
 
-    @Column
+    @Column(name = "bin")
     private Long bin;
-    @Column
+    @Column(name = "ein")
     private Long ein;
-    @Column
+    @Column(name = "is_for_profit")
     private boolean isForProfit;
-    @Column
+    @Column(name = "account_id")
     private Long accountId;
 
 
