@@ -31,9 +31,8 @@ public class BankAccount {
     @Column (name = "balance")
     private double balance;
 
-    public BankAccount(Long routingNumber, Long accountNumber, Long accountId) {
+    public BankAccount(Long routingNumber, Long accountNumber) {
         this.routingNumber = routingNumber;
         this.accountNumber = accountNumber;
-        this.accountId = accountId;
     }
 }
