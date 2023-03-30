@@ -13,7 +13,7 @@ public class UserAccountReturnInfo {
     public Long phoneNumber;
     public String name;
     public String address;
-    public boolean isBusinessAccount;
+    public boolean businessAccount;
 
     public UserAccountReturnInfo(UserAccount userAccount){
         this.accountId = userAccount.getAccountId();
@@ -22,6 +22,6 @@ public class UserAccountReturnInfo {
         this.phoneNumber = userAccount.getPhoneNumber();
         this.name = userAccount.getName();
         this.address = userAccount.getAddress();
-        this.isBusinessAccount = userAccount.isBusinessAccount();
+        this.businessAccount = userAccount.isBusinessAccount();
     }
 }

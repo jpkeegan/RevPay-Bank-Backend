@@ -12,5 +12,5 @@ public class UserAccountUpdateContent {
     public Long phoneNumber;
     public String name;
     public String address;
-    public boolean isBusinessAccount;
+    public boolean businessAccount;
 }

@@ -25,16 +25,16 @@ public class UserAccount extends UserAccountReturnInfo {
     public Long phoneNumber;
     public String name;
     public String address;
-    public boolean isBusinessAccount;
+    public boolean businessAccount;
 
-    public UserAccount(String username, String password, String email, Long phoneNumber, String name, String address, boolean isBusinessAccount){
+    public UserAccount(String username, String password, String email, Long phoneNumber, String name, String address, boolean businessAccount){
         this.username = username;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.name = name;
         this.address = address;
-        this.isBusinessAccount = isBusinessAccount;
+        this.businessAccount = businessAccount;
     }
 
     public UserAccount(Long userAccountId, UserAccountUpdateContent userAccountUpdateContent){
@@ -45,7 +45,7 @@ public class UserAccount extends UserAccountReturnInfo {
         this.phoneNumber = userAccountUpdateContent.getPhoneNumber();
         this.name = userAccountUpdateContent.getName();
         this.address = userAccountUpdateContent.getAddress();
-        this.isBusinessAccount = userAccountUpdateContent.isBusinessAccount();
+        this.businessAccount = userAccountUpdateContent.isBusinessAccount();
     }
 
 
