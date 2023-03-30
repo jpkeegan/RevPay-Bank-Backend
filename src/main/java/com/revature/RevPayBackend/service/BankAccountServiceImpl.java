@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.Id;
+import java.util.List;
 
 @Service
 @Primary
@@ -24,6 +25,11 @@ public class BankAccountServiceImpl implements BankAccountService {
     @Override
     public BankAccount getById(Long bankAccountId) {
         return bankAccountRepository.findById(bankAccountId).get();
+    }
+
+    @Override
+    public List<BankAccount> getAll() {
+        return bankAccountRepository.findAll();
     }
 
     @Override
