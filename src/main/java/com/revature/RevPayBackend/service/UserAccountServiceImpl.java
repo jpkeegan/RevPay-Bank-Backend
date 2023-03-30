@@ -59,8 +59,8 @@ public class UserAccountServiceImpl implements UserAccountService {
 
     @Override
     public List<UserAccount> getAll(boolean flag) {
-        if (flag) return userAccountRepository.findByIsBusinessAccountTrue();
-        else return userAccountRepository.findByIsBusinessAccountFalse();
+        if (flag) return userAccountRepository.findByBusinessAccountTrue();
+        else return userAccountRepository.findByBusinessAccountFalse();
     }
 
     @Override
