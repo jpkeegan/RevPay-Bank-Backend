@@ -21,7 +21,7 @@ public class BusinessController {
 
     @PostMapping()
     public ResponseEntity<Business> insert(@RequestBody BusinessAccountReturn rbusiness){
-        Business business = new Business(rbusiness.getBusinessId(), rbusiness.getBin(), rbusiness.getEin(), rbusiness.isForProfit(), rbusiness.getAccountid());
+        Business business = new Business(rbusiness.getBusinessId(), rbusiness.getBin(), rbusiness.getEin(), rbusiness.isForProfit(), rbusiness.getAccountId());
         logger.info("Object made: " + business.toString());
         return new ResponseEntity<>(businessService.insert(business), HttpStatus.CREATED);
     }
