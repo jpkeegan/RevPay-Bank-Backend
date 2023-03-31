@@ -91,7 +91,7 @@ public class UserAccountController {
     @PutMapping("/{userAccountId}")
     public UserAccountReturnInfo update(@PathVariable("userAccountId") Long userAccountId, @RequestBody UserAccountUpdateContent userAccountUpdateContent) throws UserNotFoundException {
         logger1.info("Must validate update authorization.");
-        LoginForm verifyLogin = new LoginForm(userAccountUpdateContent.getUsername(), userAccountUpdateContent.getPassword());
+        LoginForm verifyLogin = new LoginForm(userAccountUpdateContent.getOldUsername(), userAccountUpdateContent.getPassword());
         logger1.info("Verifying Login");
         hashPass(verifyLogin);
         UserAccount returnedUser = userAccountService.verify(verifyLogin);
