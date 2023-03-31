@@ -1,5 +1,6 @@
 package com.revature.RevPayBackend.controller;
 
+import com.revature.RevPayBackend.dto.BankAccountInput;
 import com.revature.RevPayBackend.entity.BankAccount;
 import com.revature.RevPayBackend.exceptions.UserExceptions.IdNotFoundException;
 import com.revature.RevPayBackend.service.BankAccountService;
@@ -24,8 +25,9 @@ public class BankAccountController {
     Logger logger1 = LoggerFactory.getLogger(BankAccountController.class);
 
     @PostMapping()
-    public ResponseEntity <BankAccount> insert(@RequestBody BankAccount bankAccount) {
-        logger1.info("Inserting bank account: {}", bankAccount);
+    public ResponseEntity <BankAccount> insert(@RequestBody BankAccountInput bankAccountInput) {
+        logger1.info("Inserting bank account: {}", bankAccountInput);
+        BankAccount bankAccount = new BankAccount(bankAccountInput);
         return new ResponseEntity<>(bankAccountService.insert(bankAccount), HttpStatus.CREATED);
     }
 
