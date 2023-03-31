@@ -13,4 +13,5 @@ public class UserAccountUpdateContent {
     public String name;
     public String address;
     public boolean businessAccount;
+    public String oldUsername;
 }
