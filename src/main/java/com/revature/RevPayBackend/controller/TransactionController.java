@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,11 +28,10 @@ public class TransactionController {
 
     @PostMapping()
     public ResponseEntity insert(@RequestBody Transaction transaction) {
-        transactionService.insert(transaction);
         logger.info("Object made: " + transaction.toString());
-        return ResponseEntity.status(201).build();
+        return new ResponseEntity<>(transactionService.insert(transaction) , HttpStatus.CREATED);
     };
-//
+//return
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ResponseEntity<List<Transaction>> getAll() {
 
@@ -65,12 +65,12 @@ public class TransactionController {
         }
 
     }
-    @GetMapping("/date/{transactionIdentifier}")
-    public ResponseEntity <List<Transaction>> getByTimeRange(@PathVariable("transactionIdentifier") String identifier) {
+    @GetMapping("/date/{accountId}/{transactionIdentifier}")
+    public ResponseEntity <List<Transaction>> getByTimeRange(@PathVariable("transactionIdentifier") String identifier, @PathVariable("accountId") Long accountId) {
         try {
             Long time = Long.parseLong(identifier);
             logger.info("Success");
-            return ResponseEntity.ok(transactionService.getByTimeRange(time));
+            return ResponseEntity.ok(transactionService.getByTimeRange(accountId,time));
         } catch(Exception e) {
             logger.error("Not Found");
             return ResponseEntity.status(404).build();
