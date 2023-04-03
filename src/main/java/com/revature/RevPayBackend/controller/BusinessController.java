@@ -1,6 +1,8 @@
 package com.revature.RevPayBackend.controller;
 
 import com.revature.RevPayBackend.dto.BusinessAccountReturn;
+import com.revature.RevPayBackend.entity.Wallet;
+import com.revature.RevPayBackend.exceptions.UserExceptions.IdNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.revature.RevPayBackend.entity.Business;
@@ -48,5 +50,13 @@ public class BusinessController {
     @DeleteMapping("/{deleteId}")
     public boolean delete(@PathVariable("deleteId") Long id){
         return businessService.delete(id);
+    }
+
+
+    @GetMapping({"/account/{accountId}"})
+    public ResponseEntity<Business> getByAccountId(@PathVariable("accountId") Long accountId) throws IdNotFoundException{
+        Business business = businessService.findByAccountId(accountId);
+        logger.info("Getting business from account: " + accountId);
+        return ResponseEntity.ok(business);
     }
 }
