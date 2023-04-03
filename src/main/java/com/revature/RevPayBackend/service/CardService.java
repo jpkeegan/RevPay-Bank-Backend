@@ -7,7 +7,7 @@ import java.util.List;
 public interface CardService {
     Card insert(Card card);
     List<Card> getAll();
-    Card getById(Long account_id) throws IdNotFoundException;
+    Card getById(Long card_id) throws IdNotFoundException;
     Card update(Card card) throws IdNotFoundException;
-    boolean delete(Long account_id);
+    boolean delete(Long card_id);
 }

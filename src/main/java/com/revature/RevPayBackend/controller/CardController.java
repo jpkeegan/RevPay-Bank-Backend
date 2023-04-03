@@ -18,11 +18,12 @@ public class CardController {
     @Autowired
     CardService cardService;
 
-    @GetMapping("/{accountId}")
-    public ResponseEntity<Card> getById(@PathVariable("accountId") Long accountId) throws IdNotFoundException {
-        Card card = cardService.getById(accountId);
+    @GetMapping("/{Id}")
+    public ResponseEntity<Card> getById(@PathVariable("Id") Long cardId) throws IdNotFoundException {
+        Card card = cardService.getById(cardId);
         return ResponseEntity.ok(card);
     }
+
     @GetMapping()
     public List<Card> getAll(){
         return cardService.getAll();
@@ -42,9 +43,9 @@ public class CardController {
     }
 
 
-    @DeleteMapping("/{accountId}")
-    public ResponseEntity<Void> delete(@PathVariable Long accountId) {
-        boolean deleted = cardService.delete(accountId);
+    @DeleteMapping("/{Id}")
+    public ResponseEntity<Void> delete(@PathVariable Long cardId) {
+        boolean deleted = cardService.delete(cardId);
         if (deleted) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
