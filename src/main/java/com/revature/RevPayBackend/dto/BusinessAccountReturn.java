@@ -1,17 +1,20 @@
 package com.revature.RevPayBackend.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class BusinessAccountReturn {
 
     private Long businessId;
     private Long bin;
     private Long ein;
-    private boolean isForProfit;
-    private Long accountid;
+    private boolean forProfit;
+    private Long accountId;
+
 
     public Long getBusinessId() {
         return businessId;
@@ -38,18 +41,10 @@ public class BusinessAccountReturn {
     }
 
     public boolean isForProfit() {
-        return isForProfit;
+        return forProfit;
     }
 
-    public void setIsForProfit(boolean forProfit) {
-        isForProfit = forProfit;
-    }
-
-    public Long getAccountId() {
-        return accountid;
-    }
-
-    public void setAccountId(Long accountid) {
-        this.accountid = accountid;
+    public void setForProfit(boolean forProfit) {
+        this.forProfit = forProfit;
     }
 }
