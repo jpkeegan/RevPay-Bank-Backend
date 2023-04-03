@@ -19,16 +19,9 @@ public class Business {
     @Column(name = "ein")
     private Long ein;
     @Column(name = "is_for_profit")
-    private boolean isForProfit;
+    private boolean forProfit;
     @Column(name = "account_id")
     private Long accountId;
 
 
-    public boolean isForProfit() {
-        return isForProfit;
-    }
-
-    public void setIsForProfit(boolean forProfit) {
-        isForProfit = forProfit;
-    }
 }
