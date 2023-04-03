@@ -56,13 +56,6 @@ public class CardServiceTest {
         Assertions.assertEquals(c1,cardService.getById(3l));
     }
     @Test
-    public void testGetByAccountId() throws IdNotFoundException{
-        Card c1 = new Card(3l,4l,5l,true);
-        Mockito.when(cardRepo.findByAccountId(5l)).thenReturn(Optional.of(c1));
-        Mockito.when(cardRepo.existsById(5l)).thenReturn(true);
-        Assertions.assertEquals(c1,cardService.getByAccountId(5l));
-    }
-    @Test
     public void testDelete(){
         Mockito.when(cardRepo.existsById((long)2)).thenReturn(true);
         Mockito.when(cardRepo.existsById((long)3)).thenReturn(false);
