@@ -1,5 +1,6 @@
 package com.revature.RevPayBackend.entity;
 
+import com.revature.RevPayBackend.dto.PasswordChange;
 import com.revature.RevPayBackend.dto.UserAccountReturnInfo;
 import com.revature.RevPayBackend.dto.UserAccountUpdateContent;
 import lombok.AllArgsConstructor;
@@ -47,7 +48,6 @@ public class UserAccount extends UserAccountReturnInfo {
         this.address = userAccountUpdateContent.getAddress();
         this.businessAccount = userAccountUpdateContent.isBusinessAccount();
     }
-
 
     public static void hashPassUA(UserAccount userAccount){
         try{

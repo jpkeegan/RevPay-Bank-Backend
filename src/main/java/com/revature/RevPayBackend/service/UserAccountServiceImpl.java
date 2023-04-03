@@ -31,6 +31,11 @@ public class UserAccountServiceImpl implements UserAccountService {
     }
 
     @Override
+    public UserAccount resetPassword(UserAccount userAccount) throws UserNotFoundException {
+        return userAccountRepository.save(userAccount);
+    }
+
+    @Override
     public boolean delete(Long userId) throws IdNotFoundException {
         boolean found = userAccountRepository.existsById(userId);
         if (!found){
