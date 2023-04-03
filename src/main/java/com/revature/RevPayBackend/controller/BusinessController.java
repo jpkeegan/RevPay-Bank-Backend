@@ -29,7 +29,9 @@ public class BusinessController {
     @GetMapping("/{id}")
     public ResponseEntity<Business> getById(@PathVariable("id") Long identifier){
         try {
-            return new ResponseEntity<>(businessService.getById(identifier),HttpStatus.OK);
+            Business result = businessService.getById(identifier);
+            logger.info("Object fetched: " + result.toString());
+            return new ResponseEntity<>(result,HttpStatus.OK);
         }catch(Exception e){
             return new ResponseEntity<>(new Business(),HttpStatus.NOT_FOUND);
         }
@@ -38,7 +40,9 @@ public class BusinessController {
     @GetMapping("/account/{id}")
     public ResponseEntity<Business> getByAccountId(@PathVariable("id") Long identifier){
         try {
-            return new ResponseEntity<>(businessService.getByAccountId(identifier),HttpStatus.OK);
+            Business result = businessService.getByAccountId(identifier);
+            logger.info("Object fetched: " + result.toString());
+            return new ResponseEntity<>(result,HttpStatus.OK);
         }catch(Exception e){
             return new ResponseEntity<>(new Business(),HttpStatus.NOT_FOUND);
         }
