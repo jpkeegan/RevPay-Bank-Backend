@@ -10,4 +10,6 @@ public interface BusinessService {
     List<Business> getAll();
     Business update(Business business);
     boolean delete(Long id);
+
+    Business getByAccountId(Long id);
 }

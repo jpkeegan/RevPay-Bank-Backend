@@ -38,4 +38,9 @@ public class BusinessServiceImp implements BusinessService{
         if(found) businessRepository.deleteById(id);
         return found;
     }
+
+    @Override
+    public Business getByAccountId(Long id) {
+        return businessRepository.findByAccountId(id);
+    }
 }

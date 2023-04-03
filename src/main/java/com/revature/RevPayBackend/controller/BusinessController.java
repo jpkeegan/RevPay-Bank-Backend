@@ -35,6 +35,15 @@ public class BusinessController {
         }
     }
 
+    @GetMapping("/account/{id}")
+    public ResponseEntity<Business> getByAccountId(@PathVariable("id") Long identifier){
+        try {
+            return new ResponseEntity<>(businessService.getByAccountId(identifier),HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity<>(new Business(),HttpStatus.NOT_FOUND);
+        }
+    }
+
     @PutMapping()
     public ResponseEntity<Business> update(@RequestBody Business business){
         try{
