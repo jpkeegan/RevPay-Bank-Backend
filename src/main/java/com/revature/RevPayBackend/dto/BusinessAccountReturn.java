@@ -45,11 +45,11 @@ public class BusinessAccountReturn {
         isForProfit = forProfit;
     }
 
-    public Long getAccountid() {
+    public Long getAccountId() {
         return accountid;
     }
 
-    public void setAccountid(Long accountid) {
+    public void setAccountId(Long accountid) {
         this.accountid = accountid;
     }
 }

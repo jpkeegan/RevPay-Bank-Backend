@@ -1,7 +1,6 @@
 package com.revature.RevPayBackend.service;
 
 import com.revature.RevPayBackend.entity.Business;
-import com.revature.RevPayBackend.exceptions.UserExceptions.IdNotFoundException;
 
 import java.util.List;
 
@@ -12,5 +11,5 @@ public interface BusinessService {
     Business update(Business business);
     boolean delete(Long id);
 
-    Business findByAccountId(Long accountId) throws IdNotFoundException;
+    Business getByAccountId(Long id);
 }

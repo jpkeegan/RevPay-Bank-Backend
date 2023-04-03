@@ -24,4 +24,11 @@ public class Business {
     private Long accountId;
 
 
+    public boolean isForProfit() {
+        return isForProfit;
+    }
+
+    public void setIsForProfit(boolean forProfit) {
+        isForProfit = forProfit;
+    }
 }

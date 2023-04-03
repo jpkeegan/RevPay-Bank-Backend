@@ -23,7 +23,7 @@ public class BusinessController {
 
     @PostMapping()
     public ResponseEntity<Business> insert(@RequestBody BusinessAccountReturn rbusiness){
-        Business business = new Business(rbusiness.getBusinessId(), rbusiness.getBin(), rbusiness.getEin(), rbusiness.isForProfit(), rbusiness.getAccountid());
+        Business business = new Business(rbusiness.getBusinessId(), rbusiness.getBin(), rbusiness.getEin(), rbusiness.isForProfit(), rbusiness.getAccountId());
         logger.info("Object made: " + business.toString());
         return new ResponseEntity<>(businessService.insert(business), HttpStatus.CREATED);
     }
@@ -31,7 +31,20 @@ public class BusinessController {
     @GetMapping("/{id}")
     public ResponseEntity<Business> getById(@PathVariable("id") Long identifier){
         try {
-            return new ResponseEntity<>(businessService.getById(identifier),HttpStatus.OK);
+            Business result = businessService.getById(identifier);
+            logger.info("Object fetched: " + result.toString());
+            return new ResponseEntity<>(result,HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity<>(new Business(),HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/account/{id}")
+    public ResponseEntity<Business> getByAccountId(@PathVariable("id") Long identifier){
+        try {
+            Business result = businessService.getByAccountId(identifier);
+            logger.info("Object fetched: " + result.toString());
+            return new ResponseEntity<>(result,HttpStatus.OK);
         }catch(Exception e){
             return new ResponseEntity<>(new Business(),HttpStatus.NOT_FOUND);
         }
@@ -53,10 +66,5 @@ public class BusinessController {
     }
 
 
-    @GetMapping({"/account/{accountId}"})
-    public ResponseEntity<Business> getByAccountId(@PathVariable("accountId") Long accountId) throws IdNotFoundException{
-        Business business = businessService.findByAccountId(accountId);
-        logger.info("Getting business from account: " + accountId);
-        return ResponseEntity.ok(business);
-    }
+
 }

@@ -1,8 +1,6 @@
 package com.revature.RevPayBackend.service;
 
 import com.revature.RevPayBackend.entity.Business;
-import com.revature.RevPayBackend.entity.Wallet;
-import com.revature.RevPayBackend.exceptions.UserExceptions.IdNotFoundException;
 import com.revature.RevPayBackend.repository.BusinessRepsository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,11 +40,7 @@ public class BusinessServiceImp implements BusinessService{
     }
 
     @Override
-    public Business findByAccountId(Long accountId) throws IdNotFoundException {
-        Business business = businessRepository.findByAccountId(accountId);
-        if (business == null) {
-            throw new IdNotFoundException();
-        }
-        return business;
+    public Business getByAccountId(Long id) {
+        return businessRepository.findByAccountId(id);
     }
 }

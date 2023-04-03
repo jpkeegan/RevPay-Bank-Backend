@@ -18,6 +18,7 @@ import java.util.Random;
 public class BankAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "bank_account_id")
     private Long bankAccountId;
 
     @Column(name = "routing_number")
