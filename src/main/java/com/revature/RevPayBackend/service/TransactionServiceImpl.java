@@ -6,6 +6,7 @@ import com.revature.RevPayBackend.entity.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -26,6 +27,17 @@ public class TransactionServiceImpl implements TransactionService{
     public List<Transaction> getAll() {return transactionRepository.findAll();}
 
     @Override
+    public List<Transaction> getAllByAccountId(Long id) {
+        return transactionRepository.findAllByAccountId(id);
+    }
+
+    @Override
+    public List<Transaction> getByTimeRange(Long timeBegin) {
+        Long timeEnd = increaseDateByMonth(timeBegin);
+        return transactionRepository.findByTimeRange(timeBegin,timeEnd);
+    }
+
+    @Override
     public Transaction update(Transaction transaction){return transactionRepository.save(transaction);}
     //@Override
     //public AppUser loginWithBody(AppUser appUser){return appUserRepository.login(appUser);}
@@ -34,6 +46,15 @@ public class TransactionServiceImpl implements TransactionService{
         boolean found = transactionRepository.existsById(id);
         if(found) transactionRepository.deleteById(id);
         return found;
+    }
+
+    private long increaseDateByMonth(long time){
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(time*1000);
+        Calendar cal2 = Calendar.getInstance();
+        cal2.clear();
+        cal2.set(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH)+1, cal.get(Calendar.DATE));
+        return cal2.getTimeInMillis()/1000;
     }
 
 //    @Override

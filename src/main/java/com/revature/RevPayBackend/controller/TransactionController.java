@@ -39,12 +39,38 @@ public class TransactionController {
         return ResponseEntity.ok(transactionService.getAll());
     }
 
+    @GetMapping("/account/{accountIdentifier}")
+    public ResponseEntity <List<Transaction>> getAllByAccountId(@PathVariable("accountIdentifier") String identifier){
+        try {
+            Long id = Long.parseLong(identifier);
+            logger.info("Success");
+            return ResponseEntity.ok(transactionService.getAllByAccountId(id));
+        } catch(Exception e) {
+            logger.error("Not Found");
+            return ResponseEntity.status(404).build();
+
+        }
+    }
+
     @GetMapping("/{transactionIdentifier}")
     public ResponseEntity <Transaction> getByIdOrName(@PathVariable("transactionIdentifier") String identifier) {
         try {
             Long id = Long.parseLong(identifier);
             logger.info("Success");
             return ResponseEntity.ok(transactionService.getById(id));
+        } catch(Exception e) {
+            logger.error("Not Found");
+            return ResponseEntity.status(404).build();
+
+        }
+
+    }
+    @GetMapping("/date/{transactionIdentifier}")
+    public ResponseEntity <List<Transaction>> getByTimeRange(@PathVariable("transactionIdentifier") String identifier) {
+        try {
+            Long time = Long.parseLong(identifier);
+            logger.info("Success");
+            return ResponseEntity.ok(transactionService.getByTimeRange(time));
         } catch(Exception e) {
             logger.error("Not Found");
             return ResponseEntity.status(404).build();

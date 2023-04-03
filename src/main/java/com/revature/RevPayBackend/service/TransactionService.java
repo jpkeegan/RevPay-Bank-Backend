@@ -9,6 +9,8 @@ public interface TransactionService {
     Transaction insert(Transaction transaction);
     Transaction getById(Long id);
     List<Transaction> getAll();
+    List<Transaction> getAllByAccountId(Long id);
+    List<Transaction> getByTimeRange(Long time);
     Transaction update(Transaction transaction);
     boolean delete(Long id);
 
