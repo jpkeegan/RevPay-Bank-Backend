@@ -9,6 +9,10 @@ import javax.persistence.*;
 @Entity
 public class Card {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "card_id")
+    private Long cardId;
+
     @Column(name = "card_number")
     private Long cardNumber;
     @Column(name = "account_id")
@@ -16,6 +20,13 @@ public class Card {
     @Column(name = "is_credit")
     private boolean credit;
 
+    public Long getCardId() {
+        return cardId;
+    }
+
+    public void setCardId(Long cardId) {
+        this.cardId = cardId;
+    }
 
     public Long getCardNumber() {
         return cardNumber;
@@ -33,11 +44,13 @@ public class Card {
         this.accountId = accountId;
     }
 
-    public boolean getCredit() {
+    public boolean isCredit() {
         return credit;
     }
 
     public void setCredit(boolean credit) {
         this.credit = credit;
     }
+
+
 }

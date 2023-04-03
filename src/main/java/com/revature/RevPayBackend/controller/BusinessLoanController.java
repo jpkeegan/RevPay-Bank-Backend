@@ -40,6 +40,7 @@ public class BusinessLoanController {
         return businessLoanService.getById(id);
     }
 
+
     @PutMapping()
     public BusinessLoan update(@RequestBody BusinessLoan businessLoan) throws IdNotFoundException {
         logger.info("Updating: " + businessLoan.toString());
