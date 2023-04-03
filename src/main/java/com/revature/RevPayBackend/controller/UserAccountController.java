@@ -1,6 +1,7 @@
 package com.revature.RevPayBackend.controller;
 
 import com.revature.RevPayBackend.dto.LoginForm;
+import com.revature.RevPayBackend.dto.PasswordChange;
 import com.revature.RevPayBackend.dto.UserAccountReturnInfo;
 import com.revature.RevPayBackend.dto.UserAccountUpdateContent;
 import com.revature.RevPayBackend.entity.UserAccount;
@@ -8,6 +9,7 @@ import com.revature.RevPayBackend.exceptions.UserExceptions.IdNotFoundException;
 import com.revature.RevPayBackend.exceptions.UserExceptions.UserNotFoundException;
 import com.revature.RevPayBackend.exceptions.UserExceptions.UsernameNotFoundException;
 import com.revature.RevPayBackend.service.UserAccountService;
+import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,6 +104,23 @@ public class UserAccountController {
             UserAccount userAccount = new UserAccount(userAccountId, userAccountUpdateContent);
             hashPassUA(userAccount);
             returnedUser = userAccountService.update(userAccount);
+        }
+        return new UserAccountReturnInfo(returnedUser);
+    }
+
+    @PutMapping("/passwordReset/{userAccountId}")
+    public UserAccountReturnInfo resetPassword(@PathVariable("userAccountId") Long userAccountId, @RequestBody PasswordChange passwordChange) throws UserNotFoundException {
+        LoginForm verifyLogin = new LoginForm(passwordChange.getUsername(), passwordChange.getOldPassword());
+        logger1.info("Verifying credentials to update password");
+        hashPass(verifyLogin);
+        UserAccount returnedUser = userAccountService.verify(verifyLogin);
+        if (returnedUser == null) {
+            logger1.info("Not authorized to change password");
+        } else {
+            logger1.info("Updating user's password");
+            returnedUser.setPassword(passwordChange.getPassword());
+            hashPassUA(returnedUser);
+            returnedUser = userAccountService.update(returnedUser);
         }
         return new UserAccountReturnInfo(returnedUser);
     }

@@ -13,6 +13,8 @@ public interface UserAccountService {
 
     UserAccount update(UserAccount userAccount);
 
+    UserAccount resetPassword(UserAccount userAccount) throws UserNotFoundException;
+
     boolean delete(Long userId) throws IdNotFoundException;
 
     UserAccount getById(Long id) throws IdNotFoundException;
