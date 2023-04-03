@@ -10,7 +10,7 @@ public interface TransactionService {
     Transaction getById(Long id);
     List<Transaction> getAll();
     List<Transaction> getAllByAccountId(Long id);
-    List<Transaction> getByTimeRange(Long time);
+    List<Transaction> getByTimeRange(Long id, Long timeBegin);
     Transaction update(Transaction transaction);
     boolean delete(Long id);
 

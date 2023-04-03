@@ -32,9 +32,9 @@ public class TransactionServiceImpl implements TransactionService{
     }
 
     @Override
-    public List<Transaction> getByTimeRange(Long timeBegin) {
+    public List<Transaction> getByTimeRange(Long id, Long timeBegin) {
         Long timeEnd = increaseDateByMonth(timeBegin);
-        return transactionRepository.findByTimeRange(timeBegin,timeEnd);
+        return transactionRepository.findByIdAndTimeRange(id, timeBegin,timeEnd);
     }
 
     @Override
@@ -50,11 +50,11 @@ public class TransactionServiceImpl implements TransactionService{
 
     private long increaseDateByMonth(long time){
         Calendar cal = Calendar.getInstance();
-        cal.setTimeInMillis(time*1000);
+        cal.setTimeInMillis(time);
         Calendar cal2 = Calendar.getInstance();
         cal2.clear();
         cal2.set(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH)+1, cal.get(Calendar.DATE));
-        return cal2.getTimeInMillis()/1000;
+        return cal2.getTimeInMillis();
     }
 
 //    @Override
