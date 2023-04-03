@@ -46,4 +46,10 @@ public class BusinessLoanServiceImpl implements BusinessLoanService {
         }
         return found;
     }
+
+    @Override
+    public List<BusinessLoan> getByBusinessId(Long businessId) throws IdNotFoundException {
+        List<BusinessLoan> businessLoans = businessLoanRepository.findByBusinessId(businessId);
+        return businessLoans;
+    }
 }

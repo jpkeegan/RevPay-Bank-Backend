@@ -52,4 +52,10 @@ public class BusinessLoanController {
         return businessLoanService.delete(id);
     }
 
+    @GetMapping("/business/{businessId}")
+    public List<BusinessLoan> getByBusinessId(@PathVariable("businessId") Long businessId) throws IdNotFoundException {
+        logger.info("Getting business loans of business ID: " + businessId);
+        return businessLoanService.getByBusinessId(businessId);
+    }
+
 }
