@@ -13,6 +13,38 @@ public class BusinessAccountReturn {
     private Long bin;
     private Long ein;
     private boolean forProfit;
-    private Long accountid;
+    private Long accountId;
 
+
+    public Long getBusinessId() {
+        return businessId;
+    }
+
+    public void setBusinessId(Long businessId) {
+        this.businessId = businessId;
+    }
+
+    public Long getBin() {
+        return bin;
+    }
+
+    public void setBin(Long bin) {
+        this.bin = bin;
+    }
+
+    public Long getEin() {
+        return ein;
+    }
+
+    public void setEin(Long ein) {
+        this.ein = ein;
+    }
+
+    public boolean isForProfit() {
+        return forProfit;
+    }
+
+    public void setForProfit(boolean forProfit) {
+        this.forProfit = forProfit;
+    }
 }
