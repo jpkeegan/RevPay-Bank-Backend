@@ -1,6 +1,7 @@
 package com.revature.RevPayBackend.controller;
 
 import com.revature.RevPayBackend.dto.LoginForm;
+import com.revature.RevPayBackend.dto.PasswordChange;
 import com.revature.RevPayBackend.dto.UserAccountReturnInfo;
 import com.revature.RevPayBackend.dto.UserAccountUpdateContent;
 import com.revature.RevPayBackend.entity.UserAccount;
