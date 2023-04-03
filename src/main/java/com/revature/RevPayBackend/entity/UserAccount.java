@@ -1,6 +1,5 @@
 package com.revature.RevPayBackend.entity;
 
-import com.revature.RevPayBackend.dto.PasswordChange;
 import com.revature.RevPayBackend.dto.UserAccountReturnInfo;
 import com.revature.RevPayBackend.dto.UserAccountUpdateContent;
 import lombok.AllArgsConstructor;
