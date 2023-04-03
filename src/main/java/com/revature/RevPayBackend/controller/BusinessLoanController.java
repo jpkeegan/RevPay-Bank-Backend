@@ -40,6 +40,7 @@ public class BusinessLoanController {
         return businessLoanService.getById(id);
     }
 
+
     @PutMapping()
     public BusinessLoan update(@RequestBody BusinessLoan businessLoan) throws IdNotFoundException {
         logger.info("Updating: " + businessLoan.toString());
@@ -50,6 +51,12 @@ public class BusinessLoanController {
     public boolean delete(@PathVariable("id") Long id) throws IdNotFoundException {
         logger.info("Deleting business loan of ID: " + id);
         return businessLoanService.delete(id);
+    }
+
+    @GetMapping("/business/{businessId}")
+    public List<BusinessLoan> getByBusinessId(@PathVariable("businessId") Long businessId) throws IdNotFoundException {
+        logger.info("Getting business loans of business ID: " + businessId);
+        return businessLoanService.getByBusinessId(businessId);
     }
 
 }

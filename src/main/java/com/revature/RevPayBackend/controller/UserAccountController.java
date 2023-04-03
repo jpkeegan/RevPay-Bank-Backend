@@ -1,7 +1,6 @@
 package com.revature.RevPayBackend.controller;
 
 import com.revature.RevPayBackend.dto.LoginForm;
-import com.revature.RevPayBackend.dto.PasswordChange;
 import com.revature.RevPayBackend.dto.UserAccountReturnInfo;
 import com.revature.RevPayBackend.dto.UserAccountUpdateContent;
 import com.revature.RevPayBackend.entity.UserAccount;
@@ -9,7 +8,6 @@ import com.revature.RevPayBackend.exceptions.UserExceptions.IdNotFoundException;
 import com.revature.RevPayBackend.exceptions.UserExceptions.UserNotFoundException;
 import com.revature.RevPayBackend.exceptions.UserExceptions.UsernameNotFoundException;
 import com.revature.RevPayBackend.service.UserAccountService;
-import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

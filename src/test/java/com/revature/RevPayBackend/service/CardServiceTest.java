@@ -24,16 +24,16 @@ public class CardServiceTest {
 
     @Test
     public void testInsert(){
-        Card card1 = new Card(-1l,8l,false);
-        Card card2 = new Card(2l,8l,true);
+        Card card1 = new Card(-1l,2l,8l,false);
+        Card card2 = new Card(1l,2l,8l,true);
         Mockito.when(cardRepo.save(card1)).thenReturn(card2);
         Assertions.assertEquals(card2, cardService.insert(card1));
     }
 
     @Test
     public void testUpdate() throws IdNotFoundException{
-        Card card1 = new Card(1l,3l,true);
-        Card card2 = new Card(5l,3l,true);
+        Card card1 = new Card(1l,3l,3l,true);
+        Card card2 = new Card(1l,5l,3l,true);
         Mockito.when(cardRepo.save(card1)).thenReturn(card2);
         Assertions.assertEquals(card2,cardService.insert(card1));
     }
@@ -41,8 +41,8 @@ public class CardServiceTest {
     @Test
      public void testGetAll(){
     List<Card> cards = new ArrayList<>(){{
-        Card card1 = new Card(3l,2l,false);
-        Card card2 = new Card(2l,3l,true);
+        Card card1 = new Card(2l,3l,2l,false);
+        Card card2 = new Card(2l,2l,3l,true);
 
     }};
         Mockito.when(cardRepo.findAll()).thenReturn(cards);
@@ -50,7 +50,7 @@ public class CardServiceTest {
 }
     @Test
     public void testGetById() throws IdNotFoundException{
-        Card c1 = new Card(3l,3l,true);
+        Card c1 = new Card(3l,4l,5l,true);
         Mockito.when(cardRepo.findById(3l)).thenReturn(Optional.of(c1));
         Mockito.when(cardRepo.existsById(3l)).thenReturn(true);
         Assertions.assertEquals(c1,cardService.getById(3l));

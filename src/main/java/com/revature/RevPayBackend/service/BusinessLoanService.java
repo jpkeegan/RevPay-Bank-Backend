@@ -11,4 +11,6 @@ public interface BusinessLoanService {
     List<BusinessLoan> getAll();
     BusinessLoan update(BusinessLoan businessLoan) throws IdNotFoundException;
     boolean delete(Long businessLoanId) throws IdNotFoundException;
+
+    List<BusinessLoan> getByBusinessId(Long businessId) throws IdNotFoundException;
 }

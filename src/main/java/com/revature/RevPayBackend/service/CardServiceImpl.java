@@ -25,32 +25,22 @@ public class CardServiceImpl implements CardService{
     }
 
     @Override
-    public Card getById(Long account_id) throws IdNotFoundException {
-        if(!cardRepo.existsById(account_id)) throw new IdNotFoundException();
-        return cardRepo.findById(account_id).get();
+    public Card getById(Long card_id) throws IdNotFoundException {
+        if(!cardRepo.existsById(card_id)) throw new IdNotFoundException();
+        return cardRepo.findById(card_id).get();
     }
-
 
     @Override
     public Card update(Card card)throws IdNotFoundException{
-        if(!cardRepo.existsById(card.getAccountId())) throw new IdNotFoundException();
-        return cardRepo.save(card);
-    }
+       if(!cardRepo.existsById(card.getCardId())) throw new IdNotFoundException();
+       return cardRepo.save(card);
+   }
     @Override
-    public boolean delete(Long account_id) {
-        boolean found = cardRepo.existsById(account_id);
-        if(found){ cardRepo.deleteById(account_id);}
+    public boolean delete(Long card_id) {
+        boolean found = cardRepo.existsById(card_id);
+        if(found){ cardRepo.deleteById(card_id);}
         return found;
     }
 
-
-//    @Override
-//    public Card updateCard(long cardNumber, long accountId, boolean isCredit) {
-//        Card card = cardRepo.findById(cardNumber)
-//                .orElseThrow(() -> new NoSuchElementException("Card not found with number: " + cardNumber));
-//        card.setAccountId(accountId);
-//        card.setCredit(isCredit);
-//        return cardRepo.save(card);
-//    }
 
 }
