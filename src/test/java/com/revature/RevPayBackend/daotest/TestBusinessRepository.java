@@ -39,7 +39,7 @@ public class TestBusinessRepository {
         Business nb = new Business();
         nb.setBin(32561l);
         nb.setEin(52723l);
-        nb.setIsForProfit(false);
+        nb.setForProfit(false);
         nb.setAccountId(10l);
         nb = br.save(nb);
         Assertions.assertEquals(6,nb.getBusinessId());

@@ -1,6 +1,7 @@
 package com.revature.RevPayBackend.controller;
 
 import com.revature.RevPayBackend.dto.BusinessAccountReturn;
+import com.revature.RevPayBackend.dto.Origin;
 import com.revature.RevPayBackend.entity.Wallet;
 import com.revature.RevPayBackend.exceptions.UserExceptions.IdNotFoundException;
 import org.slf4j.Logger;
@@ -12,7 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {Origin.origin,Origin.localhost})
 @RestController
 @RequestMapping("/businesses")
 public class BusinessController {

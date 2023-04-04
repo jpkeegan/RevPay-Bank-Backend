@@ -7,12 +7,12 @@ COPY pom.xml /home/app
 RUN mvn -f /home/app/pom.xml clean package
 
 FROM openjdk:11-jre-slim
-COPY --from=build /home/app/target/RevPay-Bank-Backend-0.0.1-SNAPSHOT.jar /usr/local/lib/demo.jar
+COPY --from=build /home/app/target/RevPay-Backend-0.0.1-SNAPSHOT.jar /usr/local/lib/demo.jar
 
 EXPOSE 8080
 
 ENTRYPOINT ["java", "-jar", "/usr/local/lib/demo.jar"]
 
-#docker build -t town-complaint .
+#docker build -t erichdeh/revpay-bank .
 
 #docker run --name town-container -p 8080:8080 -e RDS_URL -e RDS_USER -e RDS_PASS town-complaint

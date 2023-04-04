@@ -28,7 +28,7 @@ public class BusinessServiceTest {
         Business nb = new Business();
         nb.setBin(32561l);
         nb.setEin(52723l);
-        nb.setIsForProfit(false);
+        nb.setForProfit(false);
         nb.setAccountId(10l);
         Business returnValue = new Business(1l,32561l,52723l,false,10l);
         Mockito.when(br.save(nb)).thenReturn(returnValue);

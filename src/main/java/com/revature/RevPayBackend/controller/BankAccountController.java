@@ -1,6 +1,7 @@
 package com.revature.RevPayBackend.controller;
 
 import com.revature.RevPayBackend.dto.BankAccountInput;
+import com.revature.RevPayBackend.dto.Origin;
 import com.revature.RevPayBackend.entity.BankAccount;
 import com.revature.RevPayBackend.exceptions.UserExceptions.IdNotFoundException;
 import com.revature.RevPayBackend.service.BankAccountService;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {Origin.origin,Origin.localhost})
 @RequestMapping("/bankAccounts")
 
 public class BankAccountController {

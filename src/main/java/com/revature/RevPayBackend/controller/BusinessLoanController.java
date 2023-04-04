@@ -1,5 +1,6 @@
 package com.revature.RevPayBackend.controller;
 
+import com.revature.RevPayBackend.dto.Origin;
 import com.revature.RevPayBackend.entity.BusinessLoan;
 import com.revature.RevPayBackend.exceptions.UserExceptions.IdNotFoundException;
 import com.revature.RevPayBackend.service.BusinessLoanService;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {Origin.origin,Origin.localhost})
 @RestController
 @RequestMapping("/businessloans")
 public class BusinessLoanController {

@@ -3,6 +3,7 @@ package com.revature.RevPayBackend.controller;
 import java.util.List;
 
 
+import com.revature.RevPayBackend.dto.Origin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import com.revature.RevPayBackend.entity.Transaction;
 import com.revature.RevPayBackend.service.TransactionService;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {Origin.origin,Origin.localhost})
 @RequestMapping("/transaction")
 
 public class TransactionController {

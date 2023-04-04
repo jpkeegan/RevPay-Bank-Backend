@@ -1,5 +1,6 @@
 package com.revature.RevPayBackend.controller;
 
+import com.revature.RevPayBackend.dto.Origin;
 import com.revature.RevPayBackend.entity.Wallet;
 import com.revature.RevPayBackend.exceptions.UserExceptions.IdNotFoundException;
 import com.revature.RevPayBackend.service.WalletService;
@@ -11,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {Origin.origin,Origin.localhost})
 public class WalletController {
 
     @Autowired

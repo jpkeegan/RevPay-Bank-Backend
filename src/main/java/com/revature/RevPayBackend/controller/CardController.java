@@ -1,5 +1,6 @@
 package com.revature.RevPayBackend.controller;
 
+import com.revature.RevPayBackend.dto.Origin;
 import com.revature.RevPayBackend.entity.Transaction;
 import com.revature.RevPayBackend.service.CardService;
 import com.revature.RevPayBackend.entity.Card;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 @RestController
 @RequestMapping("/cards")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {Origin.origin,Origin.localhost})
 
 public class CardController {
     @Autowired
