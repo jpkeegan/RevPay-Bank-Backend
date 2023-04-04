@@ -16,7 +16,12 @@ public class Card {
     @Column(name = "card_number")
     private Long cardNumber;
     @Column(name = "account_id")
-    private Long accountId;
+   private Long accountId;
+
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "account_id")
+//    private UserAccount userAccount;
+
     @Column(name = "is_credit")
     private boolean credit;
 
@@ -51,6 +56,15 @@ public class Card {
     public void setCredit(boolean credit) {
         this.credit = credit;
     }
+
+//    public UserAccount getUserAccount() {
+//        return userAccount;
+//    }
+//
+//    public void setUserAccount(UserAccount userAccount) {
+//        this.userAccount = userAccount;
+//    }
+
 
 
 }

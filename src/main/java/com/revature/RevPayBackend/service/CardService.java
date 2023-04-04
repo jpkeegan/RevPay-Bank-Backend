@@ -10,4 +10,6 @@ public interface CardService {
     Card getById(Long card_id) throws IdNotFoundException;
     Card update(Card card) throws IdNotFoundException;
     boolean delete(Long card_id);
+    List<Card> getAllCardsByAccountId(Long account_id);
+
 }

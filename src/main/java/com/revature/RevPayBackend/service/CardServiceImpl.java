@@ -1,6 +1,7 @@
 package com.revature.RevPayBackend.service;
 
 import com.revature.RevPayBackend.entity.Card;
+import com.revature.RevPayBackend.entity.Transaction;
 import com.revature.RevPayBackend.repository.CardRepo;
 import com.revature.RevPayBackend.exceptions.IdNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,15 @@ public class CardServiceImpl implements CardService{
         return found;
     }
 
+    public List<Card> getAllCardsByAccountId(Long accountId) {
+        List<Card> cards = cardRepo.findAllByAccountId(accountId);
+        return cards;
+    }
+
+//    @Override
+//    public List<Card> getCardsByAccountId(Long accountId) {
+//        return cardRepo.findByUserAccountId(accountId);
+//    }
 
 }
+
