@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = Origin.origin)
+@CrossOrigin(origins = {Origin.origin,Origin.localhost})
 @RestController
 @RequestMapping("/businessloans")
 public class BusinessLoanController {

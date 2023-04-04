@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = Origin.origin)
+@CrossOrigin(origins = {Origin.origin,Origin.localhost})
 @RequestMapping("/bankAccounts")
 
 public class BankAccountController {

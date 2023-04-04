@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = Origin.origin)
+@CrossOrigin(origins = {Origin.origin,Origin.localhost})
 public class WalletController {
 
     @Autowired

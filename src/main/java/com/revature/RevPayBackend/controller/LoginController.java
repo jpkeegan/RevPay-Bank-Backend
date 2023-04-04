@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 import static com.revature.RevPayBackend.dto.LoginForm.hashPass;
 
 @RestController@RequestMapping("/login")
-@CrossOrigin(origins = Origin.origin)
+@CrossOrigin(origins = {Origin.origin,Origin.localhost})
 public class LoginController {
     @Autowired
     UserAccountService userAccountService;

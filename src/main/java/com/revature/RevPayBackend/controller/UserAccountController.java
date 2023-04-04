@@ -20,7 +20,7 @@ import static com.revature.RevPayBackend.entity.UserAccount.hashPassUA;
 
 @RestController
 @RequestMapping("/userAccount")
-@CrossOrigin(origins = Origin.origin)
+@CrossOrigin(origins = {Origin.origin,Origin.localhost})
 public class UserAccountController {
     @Autowired
     UserAccountService userAccountService;

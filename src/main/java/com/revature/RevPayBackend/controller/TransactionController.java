@@ -18,7 +18,7 @@ import com.revature.RevPayBackend.entity.Transaction;
 import com.revature.RevPayBackend.service.TransactionService;
 
 @RestController
-@CrossOrigin(origins = Origin.origin)
+@CrossOrigin(origins = {Origin.origin,Origin.localhost})
 @RequestMapping("/transaction")
 
 public class TransactionController {

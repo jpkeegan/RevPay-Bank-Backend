@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
@@ -122,9 +123,12 @@ public class WalletServiceTest {
         when(walletRepository.findById(anyLong())).thenReturn(Optional.empty());
 
         // when
-        boolean deleted = walletService.deleteWallet(walletId);
+
 
         // then
-        assertThat(deleted).isFalse();
+        //assertThat(deleted).isFalse();
+        assertThatExceptionOfType(IdNotFoundException.class).isThrownBy(() -> {
+            boolean deleted = walletService.deleteWallet(walletId);
+        });
     }
 }
