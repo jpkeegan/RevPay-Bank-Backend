@@ -1,5 +1,6 @@
 package com.revature.RevPayBackend.controller;
 
+import com.revature.RevPayBackend.dto.Origin;
 import com.revature.RevPayBackend.service.CardService;
 import com.revature.RevPayBackend.entity.Card;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 @RestController
 @RequestMapping("/cards")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = Origin.origin)
 
 public class CardController {
     @Autowired

@@ -13,6 +13,6 @@ EXPOSE 8080
 
 ENTRYPOINT ["java", "-jar", "/usr/local/lib/demo.jar"]
 
-#docker build -t town-complaint .
+#docker build -t erichdeh/revpay-bank .
 
 #docker run --name town-container -p 8080:8080 -e RDS_URL -e RDS_USER -e RDS_PASS town-complaint

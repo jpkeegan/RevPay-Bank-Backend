@@ -1,6 +1,7 @@
 package com.revature.RevPayBackend.controller;
 
 import com.revature.RevPayBackend.dto.LoginForm;
+import com.revature.RevPayBackend.dto.Origin;
 import com.revature.RevPayBackend.dto.UserAccountReturnInfo;
 import com.revature.RevPayBackend.entity.UserAccount;
 import com.revature.RevPayBackend.exceptions.UserExceptions.UserNotFoundException;
@@ -15,7 +16,7 @@ import org.slf4j.LoggerFactory;
 import static com.revature.RevPayBackend.dto.LoginForm.hashPass;
 
 @RestController@RequestMapping("/login")
-@CrossOrigin
+@CrossOrigin(origins = Origin.origin)
 public class LoginController {
     @Autowired
     UserAccountService userAccountService;

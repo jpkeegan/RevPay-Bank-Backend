@@ -29,10 +29,10 @@ public class TransactionTest {
     @Test
     public void testInsert() {
         // initialize a pet to insert:
-        Transaction transaction = new Transaction(42, true, 777, "asd@yahoo.com", 345);
+        Transaction transaction = new Transaction(42d, true, 777l, 56l,"asd@yahoo.com", 345l);
         // creating the expected pet object once it is inserted and an id is generated:
         // The value 2 here is completely arbitrary, it's just so we have an actual id that is "generated" from the mocked save method
-        Transaction insertedTransaction = new Transaction(1L,42, true, 777, "asd@yahoo.com", 345);
+        Transaction insertedTransaction = new Transaction(42d,true, 777l, 56l, "asd@yahoo.com", 345);
 
         // mock the save method of the repository, so the repository doesn't actually access the database
         // whenever the .save method is called, it will return the pet object that we created in this test case
@@ -45,7 +45,7 @@ public class TransactionTest {
 
     @Test
     public void testGetById() {
-        Transaction expectedTransaction = new Transaction(42, true, 777, "asd@yahoo.com", 345);
+        Transaction expectedTransaction = new Transaction(42d, true, 777l, 56l, "asd@yahoo.com", 345);
         // because findById returns an optional, we have to create a mock optional:
         Optional<Transaction> userOptional = Optional.of(expectedTransaction);
         // So now when we call the findById method it will return an optional of the pet that we created
@@ -59,8 +59,8 @@ public class TransactionTest {
     @Test
     public void testGetAll() {
         List<Transaction> appUsers = Arrays.asList(
-                new Transaction(43, false, 776, "asd@yahoo.com", 345),
-                new Transaction(42, true, 777, "asd@yahoo.com", 345)
+                new Transaction(43d, false, 776l, 56l, "asd@yahoo.com", 345l),
+                new Transaction(42d, true, 777l, 56l, "asd@yahoo.com", 345l)
         );
 
         Mockito.when(transactionRepository.findAll()).thenReturn(appUsers);
@@ -72,8 +72,8 @@ public class TransactionTest {
     @Test
     public void testUpdate() {
 
-        Transaction transaction = new Transaction(1L,43, false, 776, "asd@yahoo.com", 345);
-        Transaction updatedTransaction = new Transaction(2L,42, true, 777, "asd@yahoo.com", 345);
+        Transaction transaction = new Transaction(1L,false, 43, 776, "asd@yahoo.com", 345);
+        Transaction updatedTransaction = new Transaction(2L,true, 42, 777, "asd@yahoo.com", 345);
 
         Mockito.when(transactionRepository.save(transaction)).thenReturn(updatedTransaction);
 
@@ -83,7 +83,7 @@ public class TransactionTest {
     @Test
     public void testDelete() {
 
-        Transaction transaction = new Transaction(43L, false, 776, "asd@yahoo.com", 345);
+        Transaction transaction = new Transaction(43L, false, 776, 56, "asd@yahoo.com", 345);
 
 
         Mockito.when(transactionRepository.existsById(43L)).thenReturn(true);

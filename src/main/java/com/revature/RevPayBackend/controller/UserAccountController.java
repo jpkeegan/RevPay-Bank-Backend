@@ -1,9 +1,6 @@
 package com.revature.RevPayBackend.controller;
 
-import com.revature.RevPayBackend.dto.LoginForm;
-import com.revature.RevPayBackend.dto.PasswordChange;
-import com.revature.RevPayBackend.dto.UserAccountReturnInfo;
-import com.revature.RevPayBackend.dto.UserAccountUpdateContent;
+import com.revature.RevPayBackend.dto.*;
 import com.revature.RevPayBackend.entity.UserAccount;
 import com.revature.RevPayBackend.exceptions.UserExceptions.IdNotFoundException;
 import com.revature.RevPayBackend.exceptions.UserExceptions.UserNotFoundException;
@@ -23,7 +20,7 @@ import static com.revature.RevPayBackend.entity.UserAccount.hashPassUA;
 
 @RestController
 @RequestMapping("/userAccount")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = Origin.origin)
 public class UserAccountController {
     @Autowired
     UserAccountService userAccountService;
