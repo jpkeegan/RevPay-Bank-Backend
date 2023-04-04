@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
 
-    @Query(value = "SELECT * FROM transaction_table WHERE (account_id=:id or sender_account_id=:id) and date_time>=:timeBegin and date_time<:timeEnd", nativeQuery = true)
+    @Query(value = "SELECT * FROM transaction_table WHERE (account_id=:id or sender_account_id=:id) and date_time>=:timeBegin and date_time<:timeEnd ORDER BY date_time ASC", nativeQuery = true)
     List<Transaction> findByIdAndTimeRange(@Param("id") Long id, @Param("timeBegin") Long timeBegin,@Param("timeEnd") Long timeEnd);
 
     @Query(value = "SELECT * FROM transaction_table WHERE account_id=:id or sender_account_id=:id", nativeQuery = true)
