@@ -1,5 +1,6 @@
 package com.revature.RevPayBackend.controller;
 
+import com.revature.RevPayBackend.entity.Transaction;
 import com.revature.RevPayBackend.service.CardService;
 import com.revature.RevPayBackend.entity.Card;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,28 @@ public class CardController {
         Card card = cardService.getById(cardId);
         return ResponseEntity.ok(card);
     }
+//    @GetMapping("/account/{accountIdentifier}")
+//    public ResponseEntity <List<Card>> getAllByAccountId(@PathVariable("accountIdentifier") String identifier){
+//        try {
+//            Long id = Long.parseLong(identifier);
+//            return ResponseEntity.ok(cardService.getAllByAccountId(id));
+//        } catch(Exception e) {
+//            return ResponseEntity.status(404).build();
+//
+//        }
+//    }
+
+    @GetMapping("/account/{accountIdentifier}")
+    public ResponseEntity<List<Card>> getAllByAccountId(@PathVariable("accountIdentifier") String identifier) {
+        try {
+            Long id = Long.parseLong(identifier);
+            return ResponseEntity.ok(cardService.getAllCardsByAccountId(id));
+        } catch(Exception e) {
+            return ResponseEntity.status(404).build();
+        }
+    }
+
+
 
     @GetMapping()
     public List<Card> getAll(){
@@ -43,7 +66,7 @@ public class CardController {
     }
 
 
-    @DeleteMapping("/{Id}")
+    @DeleteMapping("/{cardId}")
     public ResponseEntity<Void> delete(@PathVariable Long cardId) {
         boolean deleted = cardService.delete(cardId);
         if (deleted) {

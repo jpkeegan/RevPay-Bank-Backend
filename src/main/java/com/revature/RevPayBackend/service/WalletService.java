@@ -5,7 +5,7 @@ import com.revature.RevPayBackend.exceptions.UserExceptions.IdNotFoundException;
 
 import java.util.Optional;
 
-public interface WalletService {
+public interface WalletService{
 
     Wallet findByAccountId(Long accountId) throws IdNotFoundException;
 
